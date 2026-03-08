@@ -2,6 +2,14 @@
 class AppAssets {
   AppAssets._();
   
+  /// Assets for iconsLogosFacebook
+  /// assets/icons/logos_facebook.png
+  static const String iconsLogosFacebook = "assets/icons/logos_facebook.png";
+
+  /// Assets for iconsLogosGoogleIcon
+  /// assets/icons/logos_google-icon.png
+  static const String iconsLogosGoogleIcon = "assets/icons/logos_google-icon.png";
+
   /// Assets for imagesLogo
   /// assets/images/logo.png
   static const String imagesLogo = "assets/images/logo.png";

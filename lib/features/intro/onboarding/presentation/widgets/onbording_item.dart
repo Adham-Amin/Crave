@@ -1,4 +1,3 @@
-import 'package:crave/core/utils/app_colors.dart';
 import 'package:crave/core/utils/app_styles.dart';
 import 'package:crave/features/intro/onboarding/data/model/onboarding_model.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +14,7 @@ class OnbordingItem extends StatelessWidget {
       children: [
         Lottie.asset(onboardingitem.image),
         const Spacer(),
-        Text(
-          onboardingitem.title,
-          style: AppStyles.textBold24.copyWith(color: AppColors.white),
-        ),
+        Text(onboardingitem.title, style: AppStyles.textBold24),
       ],
     );
   }

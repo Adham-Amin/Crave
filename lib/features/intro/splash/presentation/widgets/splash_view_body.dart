@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:crave/core/routing/app_routes.dart';
+import 'package:crave/core/services/shared_preferences_service.dart';
 import 'package:crave/core/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +37,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void waitAnimationAndNavigate() async {
     Timer(const Duration(seconds: 2), () {
-      context.go(AppRoutes.onboarding);
+      if (Prefs.getBool('SeenOnboarding')) {
+        context.go(AppRoutes.login);
+      } else {
+        context.go(AppRoutes.onboarding);
+      }
     });
   }
 
