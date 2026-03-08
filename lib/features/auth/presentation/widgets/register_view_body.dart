@@ -31,6 +31,7 @@ class RegisterViewBody extends StatelessWidget {
               context.pushReplacement(AppRoutes.login);
             },
           ),
+          24.hs,
         ],
       ),
     );

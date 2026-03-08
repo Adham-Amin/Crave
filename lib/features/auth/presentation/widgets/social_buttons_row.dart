@@ -23,7 +23,7 @@ class SocialButtonsRow extends StatelessWidget {
         SizedBox(height: 16.h),
         SocialButton(
           text: 'Login with Google',
-          borderColor: AppColors.primary,
+          borderColor: AppColors.darkGrey,
           iconPath: AppAssets.iconsLogosGoogleIcon,
           onPressed: () {},
         ),

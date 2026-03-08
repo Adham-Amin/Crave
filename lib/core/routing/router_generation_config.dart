@@ -1,6 +1,9 @@
 import 'package:crave/core/routing/app_routes.dart';
+import 'package:crave/features/auth/presentation/pages/forgot_password_view.dart';
 import 'package:crave/features/auth/presentation/pages/login_view.dart';
 import 'package:crave/features/auth/presentation/pages/register_view.dart';
+import 'package:crave/features/auth/presentation/pages/reset_password_view.dart';
+import 'package:crave/features/auth/presentation/pages/verify_phone_view.dart';
 import 'package:crave/features/intro/onboarding/presentation/view/onboarding_view.dart';
 import 'package:crave/features/intro/splash/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
@@ -28,6 +31,23 @@ class RouterGenerationConfig {
         path: AppRoutes.register,
         name: AppRoutes.register,
         builder: (context, state) => const RegisterView(),
+      ),
+      GoRoute(
+        path: AppRoutes.forgotPassword,
+        name: AppRoutes.forgotPassword,
+        builder: (context, state) => const ForgotPasswordView(),
+      ),
+      GoRoute(
+        path: AppRoutes.verifyEmail,
+        name: AppRoutes.verifyEmail,
+        builder: (context, state) =>
+            VerifyEmailView(email: state.extra as String),
+      ),
+      GoRoute(
+        path: AppRoutes.resetPassword,
+        name: AppRoutes.resetPassword,
+        builder: (context, state) =>
+            ResetPasswordView(email: state.extra as String),
       ),
     ],
   );

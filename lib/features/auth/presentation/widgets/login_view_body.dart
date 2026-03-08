@@ -31,6 +31,7 @@ class LoginViewBody extends StatelessWidget {
               context.pushReplacement(AppRoutes.register);
             },
           ),
+          24.hs,
         ],
       ),
     );

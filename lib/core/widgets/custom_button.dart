@@ -8,13 +8,13 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.title,
     required this.onTap,
-    this.backgroundColor = AppColors.primary,
+    this.backgroundColor = AppColors.orange,
     this.colorText,
     this.isLoading = false,
   });
 
   final String title;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final Color? backgroundColor;
   final Color? colorText;
   final bool isLoading;
