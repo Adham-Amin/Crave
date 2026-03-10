@@ -1,10 +1,18 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:crave/core/functions/extentions.dart';
 import 'package:crave/core/functions/validators.dart';
+import 'package:crave/core/routing/app_routes.dart';
 import 'package:crave/core/utils/app_colors.dart';
 import 'package:crave/core/widgets/custom_button.dart';
+import 'package:crave/core/widgets/custom_snack_bar.dart';
 import 'package:crave/core/widgets/custom_text_form_field.dart';
 import 'package:crave/core/widgets/custom_text_form_field_password.dart';
+import 'package:crave/core/widgets/loading_dialog.dart';
+import 'package:crave/features/auth/data/models/register_request.dart';
+import 'package:crave/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
@@ -111,19 +119,50 @@ class _RegisterFormState extends State<RegisterForm> {
             onChanged: (_) => checkFields(),
           ),
           32.hs,
-          CustomButton(
-            title: 'SIGN UP',
-            backgroundColor: fieldsFilled ? AppColors.orange : Colors.grey,
-            onTap: fieldsFilled
-                ? () {
-                    if (formKey.currentState!.validate()) {
-                      // register logic
-                    } else {
-                      autovalidateMode = AutovalidateMode.always;
-                      setState(() {});
+          BlocListener<AuthCubit, AuthState>(
+            listener: (context, state) {
+              if (state is AuthLoading) {
+                loadingDialog(context);
+              }
+              if (state is AuthSuccess) {
+                context.go(AppRoutes.main);
+                customSnackBar(
+                  context: context,
+                  message: 'Hello, ${state.user.name}',
+                  type: AnimatedSnackBarType.success,
+                );
+              }
+              if (state is AuthError) {
+                context.pop();
+                customSnackBar(
+                  context: context,
+                  message: state.message,
+                  type: AnimatedSnackBarType.error,
+                );
+              }
+            },
+            child: CustomButton(
+              title: 'SIGN UP',
+              backgroundColor: fieldsFilled ? AppColors.orange : Colors.grey,
+              onTap: fieldsFilled
+                  ? () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        context.read<AuthCubit>().register(
+                          userInfo: RegisterRequest(
+                            name: nameController.text,
+                            email: emailController.text,
+                            phone: phoneController.text,
+                            password: passwordController.text,
+                          ),
+                        );
+                      } else {
+                        autovalidateMode = AutovalidateMode.always;
+                        setState(() {});
+                      }
                     }
-                  }
-                : null,
+                  : null,
+            ),
           ),
         ],
       ),

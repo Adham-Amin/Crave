@@ -4,7 +4,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ApiService {
   final Dio _dio;
-  final String baseUrl = '';
+  final String baseUrl = 'https://crave-back.onrender.com/api';
 
   ApiService(this._dio) {
     addInterceptors();

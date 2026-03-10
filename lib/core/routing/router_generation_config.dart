@@ -6,6 +6,7 @@ import 'package:crave/features/auth/presentation/pages/reset_password_view.dart'
 import 'package:crave/features/auth/presentation/pages/verify_phone_view.dart';
 import 'package:crave/features/intro/onboarding/presentation/view/onboarding_view.dart';
 import 'package:crave/features/intro/splash/presentation/views/splash_view.dart';
+import 'package:crave/features/main/main_view.dart';
 import 'package:go_router/go_router.dart';
 
 class RouterGenerationConfig {
@@ -48,6 +49,11 @@ class RouterGenerationConfig {
         name: AppRoutes.resetPassword,
         builder: (context, state) =>
             ResetPasswordView(email: state.extra as String),
+      ),
+      GoRoute(
+        path: AppRoutes.main,
+        name: AppRoutes.main,
+        builder: (context, state) => MainView(),
       ),
     ],
   );

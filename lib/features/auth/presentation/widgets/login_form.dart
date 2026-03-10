@@ -1,12 +1,17 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:crave/core/functions/extentions.dart';
 import 'package:crave/core/functions/validators.dart';
 import 'package:crave/core/routing/app_routes.dart';
 import 'package:crave/core/utils/app_colors.dart';
 import 'package:crave/core/utils/app_styles.dart';
 import 'package:crave/core/widgets/custom_button.dart';
+import 'package:crave/core/widgets/custom_snack_bar.dart';
 import 'package:crave/core/widgets/custom_text_form_field.dart';
 import 'package:crave/core/widgets/custom_text_form_field_password.dart';
+import 'package:crave/core/widgets/loading_dialog.dart';
+import 'package:crave/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginForm extends StatefulWidget {
@@ -74,7 +79,12 @@ class _LoginFormState extends State<LoginForm> {
             },
             controller: passwordController,
             hintText: 'Password',
-            validator: Validators.password,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your password';
+              }
+              return null;
+            },
           ),
           24.hs,
           Align(
@@ -90,20 +100,46 @@ class _LoginFormState extends State<LoginForm> {
             ),
           ),
           32.hs,
-          CustomButton(
-            title: 'LOGIN',
-            backgroundColor: fieldsFilled ? AppColors.orange : null,
-            onTap: !fieldsFilled
-                ? null
-                : () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      // login
-                    } else {
-                      autovalidateMode = AutovalidateMode.always;
-                      setState(() {});
-                    }
-                  },
+          BlocListener<AuthCubit, AuthState>(
+            listener: (context, state) {
+              if (state is AuthLoading) {
+                loadingDialog(context);
+              }
+              if (state is AuthSuccess) {
+                context.go(AppRoutes.main);
+                customSnackBar(
+                  context: context,
+                  message: 'Hello, ${state.user.name}',
+                  type: AnimatedSnackBarType.success,
+                );
+              }
+              if (state is AuthError) {
+                context.pop();
+                customSnackBar(
+                  context: context,
+                  message: state.message,
+                  type: AnimatedSnackBarType.error,
+                );
+              }
+            },
+            child: CustomButton(
+              title: 'LOGIN',
+              backgroundColor: fieldsFilled ? AppColors.orange : null,
+              onTap: !fieldsFilled
+                  ? null
+                  : () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        context.read<AuthCubit>().login(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );
+                      } else {
+                        autovalidateMode = AutovalidateMode.always;
+                        setState(() {});
+                      }
+                    },
+            ),
           ),
         ],
       ),
