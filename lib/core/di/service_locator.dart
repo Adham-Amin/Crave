@@ -2,6 +2,9 @@ import 'package:crave/core/services/api_service.dart';
 import 'package:crave/features/auth/data/datasources/auth_data_source.dart';
 import 'package:crave/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:crave/features/auth/domain/repositories/auth_repo.dart';
+import 'package:crave/features/cart/data/datasources/cart_data_source.dart';
+import 'package:crave/features/cart/data/repositories/cart_repo_impl.dart';
+import 'package:crave/features/cart/domain/repositories/cart_repo.dart';
 import 'package:crave/features/home/data/datasources/home_remote_data_source.dart';
 import 'package:crave/features/home/data/repositories/home_repo_impl.dart';
 import 'package:crave/features/home/domain/repositories/home_repo.dart';
@@ -25,5 +28,12 @@ void serverLocator() {
   );
   getIt.registerLazySingleton<HomeRepo>(
     () => HomeRepoImpl(homeRemoteDataSource: getIt<HomeRemoteDataSource>()),
+  );
+
+  getIt.registerLazySingleton<CartDataSource>(
+    () => CartDataSourceImpl(apiService: getIt<ApiService>()),
+  );
+  getIt.registerLazySingleton<CartRepo>(
+    () => CartRepoImpl(cartDataSource: getIt<CartDataSource>()),
   );
 }

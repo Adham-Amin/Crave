@@ -7,6 +7,7 @@ import 'package:crave/features/auth/presentation/pages/verify_phone_view.dart';
 import 'package:crave/features/intro/onboarding/presentation/view/onboarding_view.dart';
 import 'package:crave/features/intro/splash/presentation/views/splash_view.dart';
 import 'package:crave/features/main/main_view.dart';
+import 'package:crave/features/meals/presentation/pages/meals_view.dart';
 import 'package:go_router/go_router.dart';
 
 class RouterGenerationConfig {
@@ -53,7 +54,15 @@ class RouterGenerationConfig {
       GoRoute(
         path: AppRoutes.main,
         name: AppRoutes.main,
-        builder: (context, state) => MainView(),
+        builder: (context, state) => MainView(key: MainView.mainViewKey),
+      ),
+      GoRoute(
+        path: AppRoutes.meals,
+        name: AppRoutes.meals,
+        builder: (context, state) {
+          final args = state.extra as Map<String, dynamic>;
+          return MealsView(meals: args['meals'], title: args['title']);
+        },
       ),
     ],
   );

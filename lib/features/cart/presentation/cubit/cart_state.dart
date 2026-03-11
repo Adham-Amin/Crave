@@ -8,6 +8,8 @@ class CartLoading extends CartState {}
 
 class CartSuccess extends CartState {}
 
+class CartUpdate extends CartState {}
+
 class CartError extends CartState {
   final String message;
   CartError({required this.message});

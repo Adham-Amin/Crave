@@ -1,4 +1,5 @@
 import 'package:crave/core/functions/extentions.dart';
+import 'package:crave/core/routing/app_routes.dart';
 import 'package:crave/core/utils/app_styles.dart';
 import 'package:crave/features/home/data/models/category_model.dart';
 import 'package:crave/features/home/presentation/manager/meals_bu_category/meals_by_category_cubit.dart';
@@ -7,6 +8,7 @@ import 'package:crave/features/home/presentation/widgets/meal_vertical_item.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class CategoryList extends StatefulWidget {
@@ -74,7 +76,18 @@ class _CategoryListState extends State<CategoryList> {
                       ),
                       16.ws,
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push(
+                            AppRoutes.meals,
+                            extra: {
+                              'title':
+                                  CategoryModel.categoryList[currentIndex].name,
+                              'meals': context
+                                  .read<MealsByCategoryCubit>()
+                                  .meals,
+                            },
+                          );
+                        },
                         icon: Row(
                           children: [
                             Text('View all', style: AppStyles.textRegular14),
