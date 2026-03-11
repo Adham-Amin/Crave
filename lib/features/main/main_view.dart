@@ -1,5 +1,6 @@
 import 'package:crave/core/utils/app_colors.dart';
 import 'package:crave/core/utils/app_styles.dart';
+import 'package:crave/features/home/presentation/pages/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -16,7 +17,7 @@ class MainPageState extends State<MainView> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const Center(child: Text('Home')),
+    HomeView(),
     const Center(child: Text('Tables')),
     const Center(child: Text('Cart')),
     const Center(child: Text('Profile')),

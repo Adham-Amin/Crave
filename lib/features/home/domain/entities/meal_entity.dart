@@ -8,10 +8,12 @@ class MealEntity {
   final num protien;
   final num carb;
   final num fat;
+  final num weight;
 
   MealEntity({
     required this.id,
     required this.name,
+    required this.weight,
     required this.description,
     required this.image,
     required this.price,

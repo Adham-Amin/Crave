@@ -13,7 +13,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
   @override
   Future<List<MealResponse>> getCombinedMeals() async {
-    var response = await _apiService.get(endPoint: '/products/dinner');
+    var response = await _apiService.get(endPoint: '/products/lunch');
     return (response['data'] as List)
         .map((e) => MealResponse.fromJson(e))
         .toList();

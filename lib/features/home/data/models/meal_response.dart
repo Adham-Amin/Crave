@@ -66,5 +66,6 @@ class MealResponse {
     protien: protien ?? 0,
     carb: carb ?? 0,
     fat: fat ?? 0,
+    weight: weight ?? 0,
   );
 }
