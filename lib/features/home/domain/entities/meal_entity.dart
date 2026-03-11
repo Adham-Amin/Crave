@@ -9,8 +9,10 @@ class MealEntity {
   final num carb;
   final num fat;
   final num weight;
+  final num? quantity;
 
   MealEntity({
+    this.quantity,
     required this.id,
     required this.name,
     required this.weight,
