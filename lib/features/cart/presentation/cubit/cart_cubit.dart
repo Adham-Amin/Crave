@@ -12,54 +12,57 @@ class CartCubit extends Cubit<CartState> {
   final CartRepo cartRepo;
 
   List<MealEntity> cart = [];
-  List<Product> cartItems = [];
 
-  void addToCart({required Product cartItem, required MealEntity meal}) {
-    final index = cartItems.indexWhere(
-      (e) => e.productId == cartItem.productId,
-    );
+  void addToCart({required MealEntity meal}) {
+    final index = cart.indexWhere((e) => e.id == meal.id);
 
     if (index != -1) {
-      cartItems[index].productQuantity =
-          (cartItems[index].productQuantity ?? 0) + 1;
-
       cart[index].quantity++;
     } else {
-      cartItems.add(cartItem);
       cart.add(meal);
     }
 
     emit(CartUpdate());
   }
 
-  void removeFromCart({required Product cartItem, required MealEntity meal}) {
-    cartItems.remove(cartItem);
-    cart.remove(meal);
+  void removeFromCart({required MealEntity meal}) {
+    cart.removeWhere((e) => e.id == meal.id);
     emit(CartUpdate());
   }
 
   void clearCart() {
-    cartItems.clear();
     cart.clear();
     emit(CartUpdate());
   }
 
-  void updateCart({required Product cartItem}) {
-    for (int i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].productId == cartItem.productId) {
-        cartItems[i] = cartItem;
-        break;
-      }
+  void increaseQuantity(MealEntity meal) {
+    final index = cart.indexWhere((e) => e.id == meal.id);
+    if (index != -1) {
+      cart[index].quantity++;
+      emit(CartUpdate());
     }
-    emit(CartUpdate());
+  }
+
+  void decreaseQuantity(MealEntity meal) {
+    final index = cart.indexWhere((e) => e.id == meal.id);
+
+    if (index != -1) {
+      if (cart[index].quantity > 1) {
+        cart[index].quantity--;
+      } else {
+        cart.removeAt(index);
+      }
+
+      emit(CartUpdate());
+    }
   }
 
   int discount = 0;
 
   int get totalPrice {
-    final total = cartItems.fold(
+    final total = cart.fold(
       0,
-      (sum, item) => sum + item.productUnitPrice! * item.productQuantity!,
+      (sum, item) => sum + (item.price * item.quantity).toInt(),
     );
 
     final result = total - discount;
@@ -74,11 +77,24 @@ class CartCubit extends Cubit<CartState> {
 
   Future<void> storeOrder() async {
     emit(CartLoading());
+
+    final products = cart
+        .map(
+          (e) => Product(
+            productId: e.id.toInt(),
+            productQuantity: e.quantity.toInt(),
+            productUnitPrice: e.price.toInt(),
+          ),
+        )
+        .toList();
+
     final result = await cartRepo.storeOrder(
-      order: CartRequest(totalPrice: totalPrice, products: cartItems),
+      order: CartRequest(totalPrice: totalPrice, products: products),
     );
-    result.fold((l) => emit(CartError(message: l.message)), (r) {
-      emit(CartSuccess());
-    });
+
+    result.fold(
+      (l) => emit(CartError(message: l.message)),
+      (r) => emit(CartSuccess()),
+    );
   }
 }

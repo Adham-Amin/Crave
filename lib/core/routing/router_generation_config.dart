@@ -4,9 +4,11 @@ import 'package:crave/features/auth/presentation/pages/login_view.dart';
 import 'package:crave/features/auth/presentation/pages/register_view.dart';
 import 'package:crave/features/auth/presentation/pages/reset_password_view.dart';
 import 'package:crave/features/auth/presentation/pages/verify_phone_view.dart';
+import 'package:crave/features/home/domain/entities/meal_entity.dart';
 import 'package:crave/features/intro/onboarding/presentation/view/onboarding_view.dart';
 import 'package:crave/features/intro/splash/presentation/views/splash_view.dart';
 import 'package:crave/features/main/main_view.dart';
+import 'package:crave/features/meal_details/presentation/pages/meal_details_view.dart';
 import 'package:crave/features/meals/presentation/pages/meals_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -62,6 +64,13 @@ class RouterGenerationConfig {
         builder: (context, state) {
           final args = state.extra as Map<String, dynamic>;
           return MealsView(meals: args['meals'], title: args['title']);
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.mealDetails,
+        name: AppRoutes.mealDetails,
+        builder: (context, state) {
+          return MealDetailsView(meal: state.extra as MealEntity);
         },
       ),
     ],

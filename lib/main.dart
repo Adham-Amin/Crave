@@ -3,6 +3,8 @@ import 'package:crave/core/routing/router_generation_config.dart';
 import 'package:crave/core/services/custom_observer_bloc.dart';
 import 'package:crave/core/services/shared_preferences_service.dart';
 import 'package:crave/core/theme/theme_data.dart';
+import 'package:crave/features/cart/domain/repositories/cart_repo.dart';
+import 'package:crave/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,16 +22,19 @@ class Crave extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(412, 932),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.dark,
-        theme: AppThemes.lightTheme,
-        darkTheme: AppThemes.darkTheme,
-        routerConfig: RouterGenerationConfig.router,
+    return BlocProvider(
+      create: (context) => CartCubit(cartRepo: getIt<CartRepo>()),
+      child: ScreenUtilInit(
+        designSize: const Size(412, 932),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          themeMode: ThemeMode.dark,
+          theme: AppThemes.lightTheme,
+          darkTheme: AppThemes.darkTheme,
+          routerConfig: RouterGenerationConfig.router,
+        ),
       ),
     );
   }
