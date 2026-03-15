@@ -11,6 +11,9 @@ import 'package:crave/features/cart/domain/repositories/cart_repo.dart';
 import 'package:crave/features/home/data/datasources/home_remote_data_source.dart';
 import 'package:crave/features/home/data/repositories/home_repo_impl.dart';
 import 'package:crave/features/home/domain/repositories/home_repo.dart';
+import 'package:crave/features/orders/data/datasources/order_remote_data_source.dart';
+import 'package:crave/features/orders/data/repositories/order_repo_impl.dart';
+import 'package:crave/features/orders/domain/repositories/order_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -47,5 +50,12 @@ void serverLocator() {
     () => CaloriesStoreRepoImpl(
       caloriesStoreDataSource: getIt<CaloriesStoreDataSource>(),
     ),
+  );
+
+  getIt.registerLazySingleton<OrderRemoteDataSource>(
+    () => OrderRemoteDataSourceImpl(apiService: getIt<ApiService>()),
+  );
+  getIt.registerLazySingleton<OrderRepo>(
+    () => OrderRepoImpl(orderRemoteDataSource: getIt<OrderRemoteDataSource>()),
   );
 }
