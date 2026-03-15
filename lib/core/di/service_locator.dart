@@ -2,6 +2,9 @@ import 'package:crave/core/services/api_service.dart';
 import 'package:crave/features/auth/data/datasources/auth_data_source.dart';
 import 'package:crave/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:crave/features/auth/domain/repositories/auth_repo.dart';
+import 'package:crave/features/calories_store/data/datasources/calories_store_data_source.dart';
+import 'package:crave/features/calories_store/data/repositories/calories_store_repo_impl.dart';
+import 'package:crave/features/calories_store/domain/repositories/calories_store_repo.dart';
 import 'package:crave/features/cart/data/datasources/cart_data_source.dart';
 import 'package:crave/features/cart/data/repositories/cart_repo_impl.dart';
 import 'package:crave/features/cart/domain/repositories/cart_repo.dart';
@@ -35,5 +38,14 @@ void serverLocator() {
   );
   getIt.registerLazySingleton<CartRepo>(
     () => CartRepoImpl(cartDataSource: getIt<CartDataSource>()),
+  );
+
+  getIt.registerLazySingleton<CaloriesStoreDataSource>(
+    () => CaloriesStoreDataSourceImpl(apiService: getIt<ApiService>()),
+  );
+  getIt.registerLazySingleton<CaloriesStoreRepo>(
+    () => CaloriesStoreRepoImpl(
+      caloriesStoreDataSource: getIt<CaloriesStoreDataSource>(),
+    ),
   );
 }
