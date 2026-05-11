@@ -74,7 +74,6 @@ class MealCartItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                10.hs,
                 Row(
                   children: [
                     Text(
