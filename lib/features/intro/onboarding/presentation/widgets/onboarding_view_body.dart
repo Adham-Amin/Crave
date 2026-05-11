@@ -77,7 +77,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
               },
             ),
           ),
-          const Spacer(flex: 2),
+          64.hs,
           ButtonOnboarding(
             currentPage: currentPage,
             pageController: _pageController,
