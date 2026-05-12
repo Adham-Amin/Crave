@@ -17,6 +17,9 @@ import 'package:crave/features/orders/domain/repositories/order_repo.dart';
 import 'package:crave/features/table_history/data/datasources/table_history_remote_data_source.dart';
 import 'package:crave/features/table_history/data/repositories/table_history_repo_impl.dart';
 import 'package:crave/features/table_history/domain/repositories/table_history_repo.dart';
+import 'package:crave/features/tables/data/datasources/tables_data_source.dart';
+import 'package:crave/features/tables/data/repositories/tables_repo_impl.dart';
+import 'package:crave/features/tables/domain/repositories/tables_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -69,5 +72,12 @@ void serverLocator() {
     () => TableHistoryRepoImpl(
       tableHistoryRemoteDataSource: getIt<TableHistoryRemoteDataSource>(),
     ),
+  );
+
+  getIt.registerLazySingleton<TablesDataSource>(
+    () => TablesDataSourceImpl(apiService: getIt<ApiService>()),
+  );
+  getIt.registerLazySingleton<TablesRepo>(
+    () => TablesRepoImpl(tablesDataSource: getIt<TablesDataSource>()),
   );
 }

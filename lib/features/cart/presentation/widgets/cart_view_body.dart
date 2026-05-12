@@ -7,6 +7,7 @@ import 'package:crave/core/widgets/custom_button.dart';
 import 'package:crave/core/widgets/custom_snack_bar.dart';
 import 'package:crave/core/widgets/custom_text_form_field.dart';
 import 'package:crave/core/widgets/loading_dialog.dart';
+import 'package:crave/core/widgets/success_dialog.dart';
 import 'package:crave/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:crave/features/cart/presentation/widgets/meal_cart_item.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class CartViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cart = context.read<CartCubit>().cart;
+    final cart = context.watch<CartCubit>().cart;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: cart.isEmpty
@@ -107,14 +108,15 @@ class CartViewBody extends StatelessWidget {
                       loadingDialog(context);
                     }
                     if (state is CartSuccess) {
-                      context.read<CartCubit>().clearCart();
                       context.pop();
-                      navigateToTab(context, 0);
-                      customSnackBar(
+                      showDialog(
                         context: context,
-                        message: 'Order placed successfully',
-                        type: AnimatedSnackBarType.success,
-                      );
+                        barrierDismissible: false,
+                        barrierColor: Colors.black87,
+                        builder: (context) => SuccessDialog(message: 'Your order has been placed successfully!'),
+                        );
+                      context.read<CartCubit>().clearCart();
+                      navigateToTab(context, 0);
                     }
                     if (state is CartError) {
                       context.pop();

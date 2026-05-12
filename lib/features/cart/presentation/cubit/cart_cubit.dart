@@ -21,7 +21,6 @@ class CartCubit extends Cubit<CartState> {
     } else {
       cart.add(meal);
     }
-
     emit(CartUpdate());
   }
 
