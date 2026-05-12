@@ -1,3 +1,4 @@
+import 'package:crave/core/functions/navigate_to_tab.dart';
 import 'package:crave/core/utils/app_colors.dart';
 import 'package:crave/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class SuccessDialog extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).popUntil((route) => route.isFirst);
+                    navigateToTab(context, 0);
                   },
                   child: Icon(
                     Icons.close,

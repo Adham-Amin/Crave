@@ -116,7 +116,6 @@ class CartViewBody extends StatelessWidget {
                         builder: (context) => SuccessDialog(message: 'Your order has been placed successfully!'),
                         );
                       context.read<CartCubit>().clearCart();
-                      navigateToTab(context, 0);
                     }
                     if (state is CartError) {
                       context.pop();

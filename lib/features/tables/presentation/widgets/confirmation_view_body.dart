@@ -27,7 +27,7 @@ class ConfirmationViewBody extends StatelessWidget {
   final int numberOfPeople;
   final TableModel table;
 
-  String _formatDate(DateTime date) {
+  String _formatDateForDisplay(DateTime date) {
     const months = [
       'January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December',
@@ -35,12 +35,31 @@ class ConfirmationViewBody extends StatelessWidget {
     return '${months[date.month - 1]} ${date.day}, ${date.year}';
   }
 
+  String _formatDateForApi(DateTime date) {
+    return '${date.year}-${date.month}-${date.day}';
+  }
+
+  String _formatTimeForApi(String time) {
+    final cleanTime = time.replaceAll('AM', '').replaceAll('PM', '').trim();
+    final parts = cleanTime.split(':');
+    var hour = int.parse(parts[0]);
+    final minute = parts[1];
+
+    if (time.contains('PM') && hour != 12) {
+      hour += 12;
+    } else if (time.contains('AM') && hour == 12) {
+      hour = 0;
+    }
+
+    return '$hour:$minute:00';
+  }
+
   void _confirmReservation(BuildContext context) {
     final request = TablesRequest(
       number: table.number.toString(),
       numberPeople: numberOfPeople.toString(),
-      date: _formatDate(date),
-      time: time,
+      date: _formatDateForApi(date),
+      time: _formatTimeForApi(time),
     );
 
     context.read<TablesCubit>().storeTable(table: request);
@@ -107,7 +126,7 @@ class ConfirmationViewBody extends StatelessWidget {
                   child: Column(
                     children: [
                       ReservationDetailsList(
-                        date: _formatDate(date),
+                        date: _formatDateForDisplay(date),
                         time: time,
                         numberOfPeople: numberOfPeople,
                         tableNumber: table.number,
