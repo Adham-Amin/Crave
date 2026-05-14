@@ -4,6 +4,7 @@ import 'package:crave/core/utils/app_colors.dart';
 import 'package:crave/core/utils/app_styles.dart';
 import 'package:crave/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:crave/features/home/domain/entities/meal_entity.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,8 +33,8 @@ class MealCartItem extends StatelessWidget {
                     width: 140.w,
                     color: AppColors.grey,
                   )
-                : Image.network(
-                    meal.image,
+                : CachedNetworkImage(
+                    imageUrl: meal.image,
                     fit: BoxFit.cover,
                     height: double.infinity,
                     width: 140.w,

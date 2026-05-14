@@ -2,7 +2,9 @@ import 'package:crave/core/utils/app_colors.dart';
 import 'package:crave/core/utils/app_styles.dart';
 import 'package:crave/features/cart/presentation/pages/cart_view.dart';
 import 'package:crave/features/home/presentation/pages/home_view.dart';
+import 'package:crave/features/orders/presentation/views/orders_view.dart';
 import 'package:crave/features/profile/presentation/pages/profile_view.dart';
+import 'package:crave/features/table_history/presentation/views/tables_history_view.dart';
 import 'package:crave/features/tables/presentation/views/tables_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -22,8 +24,8 @@ class MainPageState extends State<MainView> {
   final List<Widget> _pages = [
     HomeView(),
     TablesView(),
-    CartView(),
-    ProfileView(),
+    OrdersView(),
+    TablesHistoryView()
   ];
 
   void changeTab(int index) {

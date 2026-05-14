@@ -6,6 +6,7 @@ import 'package:crave/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:crave/features/home/domain/entities/meal_entity.dart';
 import 'package:crave/features/meal_details/presentation/widgets/macros_section.dart';
 import 'package:crave/features/meal_details/presentation/widgets/meal_header.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,8 +26,8 @@ class MealDetailsViewBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                meal.image,
+              CachedNetworkImage(
+                imageUrl: meal.image,
                 width: double.infinity,
                 height: 320.h,
                 fit: BoxFit.cover,

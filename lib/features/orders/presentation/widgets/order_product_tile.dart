@@ -2,6 +2,7 @@ import 'package:crave/core/functions/extentions.dart';
 import 'package:crave/core/utils/app_colors.dart';
 import 'package:crave/core/utils/app_styles.dart';
 import 'package:crave/features/home/domain/entities/meal_entity.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,8 +34,8 @@ class OrderProductTile extends StatelessWidget {
                       size: 24.r,
                     ),
                   )
-                : Image.network(
-                    meal.image,
+                : CachedNetworkImage(
+                    imageUrl: meal.image,
                     width: 56.r,
                     height: 56.r,
                     fit: BoxFit.cover,
