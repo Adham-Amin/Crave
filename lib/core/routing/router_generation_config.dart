@@ -10,6 +10,7 @@ import 'package:crave/features/intro/splash/presentation/views/splash_view.dart'
 import 'package:crave/features/main/main_view.dart';
 import 'package:crave/features/meal_details/presentation/pages/meal_details_view.dart';
 import 'package:crave/features/meals/presentation/pages/meals_view.dart';
+import 'package:crave/features/orders/presentation/views/orders_view.dart';
 import 'package:go_router/go_router.dart';
 
 class RouterGenerationConfig {
@@ -72,6 +73,11 @@ class RouterGenerationConfig {
         builder: (context, state) {
           return MealDetailsView(meal: state.extra as MealEntity);
         },
+      ),
+      GoRoute(
+        path: AppRoutes.orders,
+        name: AppRoutes.orders,
+        builder: (context, state) => const OrdersView(),
       ),
     ],
   );
