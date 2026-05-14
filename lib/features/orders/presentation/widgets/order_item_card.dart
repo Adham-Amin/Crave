@@ -5,11 +5,21 @@ import 'package:crave/features/orders/domain/entities/order_entity.dart';
 import 'package:crave/features/orders/presentation/widgets/order_product_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 class OrderItemCard extends StatelessWidget {
   const OrderItemCard({super.key, required this.order});
 
   final OrderEntity order;
+
+  String get _formattedDate {
+    try {
+      final parsed = DateTime.parse(order.date);
+      return DateFormat('MMMM d, y, h:mm a').format(parsed);
+    } catch (_) {
+      return order.date;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +59,7 @@ class OrderItemCard extends StatelessWidget {
                       ),
                       4.hs,
                       Text(
-                        order.date,
+                        _formattedDate,
                         style: AppStyles.textRegular14.copyWith(
                           color: AppColors.grey,
                         ),
