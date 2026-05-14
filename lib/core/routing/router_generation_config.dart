@@ -4,6 +4,7 @@ import 'package:crave/features/auth/presentation/pages/login_view.dart';
 import 'package:crave/features/auth/presentation/pages/register_view.dart';
 import 'package:crave/features/auth/presentation/pages/reset_password_view.dart';
 import 'package:crave/features/auth/presentation/pages/verify_phone_view.dart';
+import 'package:crave/features/calories_store/presentation/views/calories_store_view.dart';
 import 'package:crave/features/home/domain/entities/meal_entity.dart';
 import 'package:crave/features/intro/onboarding/presentation/view/onboarding_view.dart';
 import 'package:crave/features/intro/splash/presentation/views/splash_view.dart';
@@ -11,6 +12,7 @@ import 'package:crave/features/main/main_view.dart';
 import 'package:crave/features/meal_details/presentation/pages/meal_details_view.dart';
 import 'package:crave/features/meals/presentation/pages/meals_view.dart';
 import 'package:crave/features/orders/presentation/views/orders_view.dart';
+import 'package:crave/features/table_history/presentation/views/tables_history_view.dart';
 import 'package:go_router/go_router.dart';
 
 class RouterGenerationConfig {
@@ -78,6 +80,16 @@ class RouterGenerationConfig {
         path: AppRoutes.orders,
         name: AppRoutes.orders,
         builder: (context, state) => const OrdersView(),
+      ),
+      GoRoute(
+        path: AppRoutes.tableHistory,
+        name: AppRoutes.tableHistory,
+        builder: (context, state) => const TablesHistoryView(),
+      ),
+      GoRoute(
+        path: AppRoutes.caloriesStore,
+        name: AppRoutes.caloriesStore,
+        builder: (context, state) => const CaloriesStoreView(),
       ),
     ],
   );

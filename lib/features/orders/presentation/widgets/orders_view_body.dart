@@ -21,7 +21,6 @@ class OrdersViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            16.hs,
             Text('My Orders', style: AppStyles.textBold24),
             4.hs,
             Text(

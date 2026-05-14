@@ -20,7 +20,6 @@ class TablesHistoryViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            16.hs,
             Text('Table Reservation', style: AppStyles.textBold24),
             4.hs,
             Text(
