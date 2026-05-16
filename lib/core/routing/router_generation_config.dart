@@ -1,3 +1,4 @@
+import 'package:crave/core/di/service_locator.dart';
 import 'package:crave/core/routing/app_routes.dart';
 import 'package:crave/features/auth/presentation/pages/forgot_password_view.dart';
 import 'package:crave/features/auth/presentation/pages/login_view.dart';
@@ -13,6 +14,10 @@ import 'package:crave/features/meal_details/presentation/pages/meal_details_view
 import 'package:crave/features/meals/presentation/pages/meals_view.dart';
 import 'package:crave/features/orders/presentation/views/orders_view.dart';
 import 'package:crave/features/table_history/presentation/views/tables_history_view.dart';
+import 'package:crave/features/wishlist/domain/repositories/wishlist_repo.dart';
+import 'package:crave/features/wishlist/presentation/cubit/wishlist_cubit.dart';
+import 'package:crave/features/wishlist/presentation/pages/wishlist_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class RouterGenerationConfig {
@@ -70,13 +75,6 @@ class RouterGenerationConfig {
         },
       ),
       GoRoute(
-        path: AppRoutes.mealDetails,
-        name: AppRoutes.mealDetails,
-        builder: (context, state) {
-          return MealDetailsView(meal: state.extra as MealEntity);
-        },
-      ),
-      GoRoute(
         path: AppRoutes.orders,
         name: AppRoutes.orders,
         builder: (context, state) => const OrdersView(),
@@ -90,6 +88,26 @@ class RouterGenerationConfig {
         path: AppRoutes.caloriesStore,
         name: AppRoutes.caloriesStore,
         builder: (context, state) => const CaloriesStoreView(),
+      ),
+      ShellRoute(
+        routes: [
+          GoRoute(
+            path: AppRoutes.mealDetails,
+            name: AppRoutes.mealDetails,
+            builder: (context, state) {
+              return MealDetailsView(meal: state.extra as MealEntity);
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.wishlist,
+            name: AppRoutes.wishlist,
+            builder: (context, state) => const WishlistView(),
+          ),
+        ],
+        builder: (context, state, child) =>
+            BlocProvider(create: (context) => WishlistCubit(
+              wishlistRepo: getIt<WishlistRepo>()
+            )..loadWishlist(), child: child),
       ),
     ],
   );

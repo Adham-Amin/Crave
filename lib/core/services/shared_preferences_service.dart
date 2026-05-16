@@ -32,6 +32,16 @@ abstract class Prefs {
     await clearToken();
   }
 
+  static Future<void> saveWishlist(List<int> products) async {
+    List<String> wishlist = products.map((e) => e.toString()).toList();
+    await _prefs?.setStringList('wishlist', wishlist);
+  }
+
+  static List<int> getWishlist() {
+    List<String>? wishlist = _prefs?.getStringList('wishlist');
+    return wishlist != null ? wishlist.map((e) => int.parse(e)).toList() : [];
+  }
+
   static bool getBool(String key, {bool defaultValue = false}) {
     return _prefs?.getBool(key) ?? defaultValue;
   }

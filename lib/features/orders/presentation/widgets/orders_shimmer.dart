@@ -15,8 +15,26 @@ class OrdersShimmer extends StatelessWidget {
       child: ListView.separated(
         itemCount: 4,
         separatorBuilder: (_, _) => 16.hs,
-        itemBuilder: (context, index) => OrderItemCard(order: OrderEntity(date: 
-            '', totalPrice: "350", products: [MealEntity(id: 4, name: "name", weight: 12, description: 'WHGEWHW', image: '', price: 211, totalCalories: 232, protien: 12, carb: 32, fat: 21)])),
+        itemBuilder: (context, index) => OrderItemCard(
+          order: OrderEntity(
+            date: '',
+            totalPrice: "350",
+            products: [
+              MealEntity(
+                id: 4,
+                name: "name",
+                weight: 12,
+                description: 'WHGEWHW',
+                image: '',
+                price: 211,
+                totalCalories: 232,
+                protien: 12,
+                carb: 32,
+                fat: 21,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

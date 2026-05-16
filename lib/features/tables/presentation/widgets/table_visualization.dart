@@ -3,10 +3,7 @@ import 'package:crave/features/tables/presentation/widgets/table_shape_widget.da
 import 'package:flutter/material.dart';
 
 class TableVisualization extends StatelessWidget {
-  const TableVisualization({
-    super.key,
-    required this.table,
-  });
+  const TableVisualization({super.key, required this.table});
 
   final TableModel table;
 

@@ -76,9 +76,7 @@ class OrderProductTile extends StatelessWidget {
               4.hs,
               Text(
                 'x${meal.quantity}',
-                style: AppStyles.textRegular14.copyWith(
-                  color: AppColors.grey,
-                ),
+                style: AppStyles.textRegular14.copyWith(color: AppColors.grey),
               ),
             ],
           ),

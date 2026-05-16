@@ -20,6 +20,9 @@ import 'package:crave/features/table_history/domain/repositories/table_history_r
 import 'package:crave/features/tables/data/datasources/tables_data_source.dart';
 import 'package:crave/features/tables/data/repositories/tables_repo_impl.dart';
 import 'package:crave/features/tables/domain/repositories/tables_repo.dart';
+import 'package:crave/features/wishlist/data/datasources/wishlist_remote_data_source.dart';
+import 'package:crave/features/wishlist/data/repositories/wishlist_repo_impl.dart';
+import 'package:crave/features/wishlist/domain/repositories/wishlist_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -79,5 +82,12 @@ void serverLocator() {
   );
   getIt.registerLazySingleton<TablesRepo>(
     () => TablesRepoImpl(tablesDataSource: getIt<TablesDataSource>()),
+  );
+
+  getIt.registerLazySingleton<WishlistRemoteDataSource>(
+    () => WishlistRemoteDataSourceImpl(apiService: getIt<ApiService>()),
+  );
+  getIt.registerLazySingleton<WishlistRepo>(
+    () => WishlistRepoImpl(wishlistRemoteDataSource: getIt<WishlistRemoteDataSource>()),
   );
 }

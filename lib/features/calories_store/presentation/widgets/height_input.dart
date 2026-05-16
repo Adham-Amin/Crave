@@ -36,14 +36,16 @@ class HeightInput extends StatelessWidget {
               children: [
                 Text(
                   heightInCm.toString(),
-                  style:
-                      AppStyles.textMedium20.copyWith(color: AppColors.white),
+                  style: AppStyles.textMedium20.copyWith(
+                    color: AppColors.white,
+                  ),
                 ),
                 SizedBox(width: 8.w),
                 Text(
                   'cm',
-                  style:
-                      AppStyles.textRegular16.copyWith(color: AppColors.grey),
+                  style: AppStyles.textRegular16.copyWith(
+                    color: AppColors.grey,
+                  ),
                 ),
               ],
             ),

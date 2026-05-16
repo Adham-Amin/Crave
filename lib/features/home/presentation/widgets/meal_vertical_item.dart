@@ -81,15 +81,6 @@ class MealVerticalItem extends StatelessWidget {
                     color: AppColors.white,
                   ),
                 ),
-                const Spacer(),
-                GestureDetector(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.favorite_border,
-                    color: AppColors.white,
-                    size: 24.h,
-                  ),
-                ),
                 16.ws,
               ],
             ),

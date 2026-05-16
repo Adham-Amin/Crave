@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ReservationHeader extends StatelessWidget {
-  const ReservationHeader({
-    super.key,
-    required this.userName,
-  });
+  const ReservationHeader({super.key, required this.userName});
 
   final String userName;
 
@@ -18,9 +15,7 @@ class ReservationHeader extends StatelessWidget {
       children: [
         Text(
           'Hello, $userName',
-          style: AppStyles.textRegular16.copyWith(
-            color: AppColors.grey,
-          ),
+          style: AppStyles.textRegular16.copyWith(color: AppColors.grey),
         ),
         SizedBox(height: 8.h),
         Text(

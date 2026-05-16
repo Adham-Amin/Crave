@@ -133,10 +133,7 @@ class _CaloriesStoreViewBodyState extends State<CaloriesStoreViewBody>
     if (index > _currentStep) return const SizedBox.shrink();
     return FadeTransition(
       opacity: _fadeAnimations[index],
-      child: SlideTransition(
-        position: _slideAnimations[index],
-        child: child,
-      ),
+      child: SlideTransition(position: _slideAnimations[index], child: child),
     );
   }
 

@@ -11,12 +11,9 @@ class CaloriesStoreView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CaloriesStoreCubit(
-        caloriesStoreRepo: getIt<CaloriesStoreRepo>(),
-      ),
-      child: const Scaffold(
-        body: CaloriesStoreViewBody(),
-      ),
+      create: (context) =>
+          CaloriesStoreCubit(caloriesStoreRepo: getIt<CaloriesStoreRepo>()),
+      child: const Scaffold(body: CaloriesStoreViewBody()),
     );
   }
 }

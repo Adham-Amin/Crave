@@ -1,12 +1,15 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:crave/core/functions/extentions.dart';
 import 'package:crave/core/utils/app_colors.dart';
 import 'package:crave/core/utils/app_styles.dart';
 import 'package:crave/core/widgets/custom_button.dart';
+import 'package:crave/core/widgets/custom_snack_bar.dart';
 import 'package:crave/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:crave/features/home/domain/entities/meal_entity.dart';
 import 'package:crave/features/meal_details/presentation/widgets/macros_section.dart';
 import 'package:crave/features/meal_details/presentation/widgets/meal_header.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:crave/features/wishlist/presentation/cubit/wishlist_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,9 +63,36 @@ class MealDetailsViewBody extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back_ios, color: AppColors.white),
               ),
               Spacer(),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.favorite_border, color: AppColors.white),
+              BlocConsumer<WishlistCubit, WishlistState>(
+                listener: (context, state) {
+                  if (state is WishlistError) {
+                    customSnackBar(context: context, message: state.message, type: AnimatedSnackBarType.error);
+                  }
+                    else if (state is AddRemoveMealFromWishlistSuccess) {
+                      final meals = context.read<WishlistCubit>().meals;
+                      final isAdded = meals.any((e) => e.id == meal.id);
+                      customSnackBar(
+                        context: context,
+                        message: !isAdded ? 'Added to Favorites' : 'Removed from Favorites',
+                        type: !isAdded ? AnimatedSnackBarType.success : AnimatedSnackBarType.error,
+                      );
+                    }
+                },
+                builder: (context, state) {
+                  return IconButton(
+                    onPressed: () {
+                      if (context.read<WishlistCubit>().inWishlist(meal.id.toInt())) {
+                        context.read<WishlistCubit>().removeMealFromWishlist(name: meal.name);
+                      } else {
+                        context.read<WishlistCubit>().addMealToWishlist(name: meal.name);
+                      }
+                    },
+                    icon: Icon(
+                       context.read<WishlistCubit>().inWishlist(meal.id.toInt()) ? Icons.favorite : Icons.favorite_border,
+                      color: context.read<WishlistCubit>().inWishlist(meal.id.toInt()) ? Colors.red : AppColors.white,
+                    ),
+                  );
+                },
               ),
             ],
           ),

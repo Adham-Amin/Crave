@@ -14,9 +14,7 @@ class TablesHistoryView extends StatelessWidget {
       create: (context) =>
           TableHistoryCubit(tableHistoryRepo: getIt<TableHistoryRepo>())
             ..getTableHistory(),
-      child: Scaffold(
-        appBar: AppBar(),
-        body: TablesHistoryViewBody()),
+      child: Scaffold(appBar: AppBar(), body: TablesHistoryViewBody()),
     );
   }
 }

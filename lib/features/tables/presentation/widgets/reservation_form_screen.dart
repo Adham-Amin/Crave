@@ -73,7 +73,8 @@ class _ReservationFormScreenState extends State<ReservationFormScreen> {
                 CustomButton(
                   title: 'NEXT',
                   backgroundColor: AppColors.red,
-                  onTap: _selectedDate != null &&
+                  onTap:
+                      _selectedDate != null &&
                           _selectedTime != null &&
                           _selectedNumberOfPeople != null
                       ? () {

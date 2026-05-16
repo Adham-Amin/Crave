@@ -41,9 +41,7 @@ class FourPersonTableWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 tableNumber.toString(),
-                style: AppStyles.textBold18.copyWith(
-                  color: AppColors.white,
-                ),
+                style: AppStyles.textBold18.copyWith(color: AppColors.white),
               ),
             ),
           ),
@@ -142,9 +140,7 @@ class SixPersonTableWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 tableNumber.toString(),
-                style: AppStyles.textBold18.copyWith(
-                  color: AppColors.white,
-                ),
+                style: AppStyles.textBold18.copyWith(color: AppColors.white),
               ),
             ),
           ),
@@ -175,11 +171,7 @@ class _SixPersonTablePainter extends CustomPainter {
           : const Color(0xFF4A4A4D);
 
     final tableRect = RRect.fromRectAndRadius(
-      Rect.fromCenter(
-        center: center,
-        width: tableWidth,
-        height: tableHeight,
-      ),
+      Rect.fromCenter(center: center, width: tableWidth, height: tableHeight),
       Radius.circular(tableWidth * 0.15),
     );
     canvas.drawRRect(tableRect, tablePaint);

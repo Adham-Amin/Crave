@@ -14,10 +14,22 @@ class TimeSelector extends StatelessWidget {
   final ValueChanged<String> onTimeChanged;
 
   static const List<String> _timeSlots = [
-    '6:30AM', '7:00AM', '7:30AM', '8:00AM',
-    '8:30AM', '9:00AM', '9:30AM', '10:00AM',
-    '10:30AM', '11:00AM', '11:30AM', '12:00PM',
-    '12:30PM', '1:00PM', '1:30PM', '2:00PM',
+    '6:30AM',
+    '7:00AM',
+    '7:30AM',
+    '8:00AM',
+    '8:30AM',
+    '9:00AM',
+    '9:30AM',
+    '10:00AM',
+    '10:30AM',
+    '11:00AM',
+    '11:30AM',
+    '12:00PM',
+    '12:30PM',
+    '1:00PM',
+    '1:30PM',
+    '2:00PM',
   ];
 
   @override
@@ -27,9 +39,7 @@ class TimeSelector extends StatelessWidget {
       children: [
         Text(
           'Choose A Time For Reservation',
-          style: AppStyles.textRegular14.copyWith(
-            color: AppColors.grey,
-          ),
+          style: AppStyles.textRegular14.copyWith(color: AppColors.grey),
         ),
         SizedBox(height: 16.h),
         SizedBox(
@@ -78,9 +88,7 @@ class _TimeItem extends StatelessWidget {
         child: Center(
           child: Text(
             time,
-            style: AppStyles.textMedium16.copyWith(
-              color: AppColors.white,
-            ),
+            style: AppStyles.textMedium16.copyWith(color: AppColors.white),
           ),
         ),
       ),

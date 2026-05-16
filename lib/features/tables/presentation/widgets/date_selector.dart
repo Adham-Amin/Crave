@@ -21,8 +21,18 @@ class DateSelector extends StatelessWidget {
   String _getDateRange() {
     final dates = _generateDates();
     const months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
     ];
     return '${months[dates.first.month - 1]} ${dates.first.day} - ${dates.last.day}';
   }
@@ -44,9 +54,7 @@ class DateSelector extends StatelessWidget {
           children: [
             Text(
               'Select The Date For Reservation',
-              style: AppStyles.textRegular14.copyWith(
-                color: AppColors.grey,
-              ),
+              style: AppStyles.textRegular14.copyWith(color: AppColors.grey),
             ),
             Row(
               children: [
@@ -74,7 +82,8 @@ class DateSelector extends StatelessWidget {
             itemCount: dates.length,
             itemBuilder: (context, index) {
               final date = dates[index];
-              final isSelected = selectedDate?.day == date.day &&
+              final isSelected =
+                  selectedDate?.day == date.day &&
                   selectedDate?.month == date.month;
               return _DateItem(
                 date: date,
@@ -119,16 +128,12 @@ class _DateItem extends StatelessWidget {
           children: [
             Text(
               date.day.toString(),
-              style: AppStyles.textBold20.copyWith(
-                color: AppColors.white,
-              ),
+              style: AppStyles.textBold20.copyWith(color: AppColors.white),
             ),
             SizedBox(height: 4.h),
             Text(
               dayName,
-              style: AppStyles.textRegular14.copyWith(
-                color: AppColors.white,
-              ),
+              style: AppStyles.textRegular14.copyWith(color: AppColors.white),
             ),
           ],
         ),

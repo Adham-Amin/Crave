@@ -1,7 +1,4 @@
-enum TableType {
-  fourPerson,
-  sixPerson,
-}
+enum TableType { fourPerson, sixPerson }
 
 class TableModel {
   final int number;

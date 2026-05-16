@@ -113,8 +113,10 @@ class CartViewBody extends StatelessWidget {
                         context: context,
                         barrierDismissible: false,
                         barrierColor: Colors.black87,
-                        builder: (context) => SuccessDialog(message: 'Your order has been placed successfully!'),
-                        );
+                        builder: (context) => SuccessDialog(
+                          message: 'Your order has been placed successfully!',
+                        ),
+                      );
                       context.read<CartCubit>().clearCart();
                     }
                     if (state is CartError) {

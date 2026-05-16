@@ -11,12 +11,8 @@ class TablesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TablesCubit(
-        tablesRepo: getIt<TablesRepo>(),
-      ),
-      child: const Scaffold(
-        body: TablesViewBody(),
-      ),
+      create: (context) => TablesCubit(tablesRepo: getIt<TablesRepo>()),
+      child: const Scaffold(body: TablesViewBody()),
     );
   }
 }

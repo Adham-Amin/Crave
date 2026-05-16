@@ -72,11 +72,11 @@ class _CalorieResultDialogState extends State<CalorieResultDialog>
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                      'Your Calorie Intake',
-                      style: AppStyles.textSemiBold20.copyWith(
-                        color: AppColors.white,
-                      ),
-                    ),
+                  'Your Calorie Intake',
+                  style: AppStyles.textSemiBold20.copyWith(
+                    color: AppColors.white,
+                  ),
+                ),
                 40.hs,
                 SizedBox(
                   width: 200.w,

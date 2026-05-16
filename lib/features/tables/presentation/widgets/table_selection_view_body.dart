@@ -55,19 +55,19 @@ class _TableSelectionViewBodyState extends State<TableSelectionViewBody> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-                child: GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Container(
-                    padding: EdgeInsets.all(8.w),
-                    child: Icon(
-                      Icons.arrow_back_ios_new,
-                      color: AppColors.white,
-                      size: 20.sp,
-                    ),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+              child: GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Container(
+                  padding: EdgeInsets.all(8.w),
+                  child: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: AppColors.white,
+                    size: 20.sp,
                   ),
                 ),
               ),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
               child: Text(

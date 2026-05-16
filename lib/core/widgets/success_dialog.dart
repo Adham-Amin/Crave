@@ -29,11 +29,7 @@ class SuccessDialog extends StatelessWidget {
                     Navigator.of(context).popUntil((route) => route.isFirst);
                     navigateToTab(context, 0);
                   },
-                  child: Icon(
-                    Icons.close,
-                    color: AppColors.white,
-                    size: 24.sp,
-                  ),
+                  child: Icon(Icons.close, color: AppColors.white, size: 24.sp),
                 ),
               ],
             ),
@@ -46,32 +42,21 @@ class SuccessDialog extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFF5CB85C),
-                    Color(0xFF4A9D8E),
-                  ],
+                  colors: [Color(0xFF5CB85C), Color(0xFF4A9D8E)],
                 ),
               ),
-              child: Icon(
-                Icons.check,
-                color: AppColors.white,
-                size: 60.sp,
-              ),
+              child: Icon(Icons.check, color: AppColors.white, size: 60.sp),
             ),
             SizedBox(height: 24.h),
             Text(
               'Done',
-              style: AppStyles.textBold24.copyWith(
-                color: AppColors.white,
-              ),
+              style: AppStyles.textBold24.copyWith(color: AppColors.white),
             ),
             SizedBox(height: 12.h),
             Text(
               message,
               textAlign: TextAlign.center,
-              style: AppStyles.textRegular16.copyWith(
-                color: AppColors.grey,
-              ),
+              style: AppStyles.textRegular16.copyWith(color: AppColors.grey),
             ),
             SizedBox(height: 8.h),
           ],

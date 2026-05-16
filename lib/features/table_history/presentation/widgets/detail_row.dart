@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailRow extends StatelessWidget {
-  const DetailRow({super.key, 
+  const DetailRow({
+    super.key,
     required this.icon,
     required this.label,
     required this.value,
@@ -39,9 +40,7 @@ class DetailRow extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: AppStyles.textRegular14.copyWith(
-                  color: AppColors.grey,
-                ),
+                style: AppStyles.textRegular14.copyWith(color: AppColors.grey),
               ),
               4.hs,
               Text(

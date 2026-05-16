@@ -13,9 +13,7 @@ class OrdersView extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           OrdersCubit(orderRepo: getIt<OrderRepo>())..getOrdersHistory(),
-      child: Scaffold(
-        appBar: AppBar(),
-        body: OrdersViewBody()),
+      child: Scaffold(appBar: AppBar(), body: OrdersViewBody()),
     );
   }
 }

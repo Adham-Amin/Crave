@@ -29,8 +29,18 @@ class ConfirmationViewBody extends StatelessWidget {
 
   String _formatDateForDisplay(DateTime date) {
     const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December',
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     return '${months[date.month - 1]} ${date.day}, ${date.year}';
   }
@@ -70,7 +80,8 @@ class ConfirmationViewBody extends StatelessWidget {
       context: context,
       barrierDismissible: false,
       barrierColor: Colors.black87,
-      builder: (context) => SuccessDialog(message: 'Your reservation has been confirmed!'),
+      builder: (context) =>
+          SuccessDialog(message: 'Your reservation has been confirmed!'),
     );
   }
 

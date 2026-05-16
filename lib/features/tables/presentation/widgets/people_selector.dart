@@ -20,9 +20,7 @@ class PeopleSelector extends StatelessWidget {
       children: [
         Text(
           'Number Of People',
-          style: AppStyles.textRegular14.copyWith(
-            color: AppColors.grey,
-          ),
+          style: AppStyles.textRegular14.copyWith(color: AppColors.grey),
         ),
         SizedBox(height: 16.h),
         SizedBox(
@@ -71,9 +69,7 @@ class _PeopleItem extends StatelessWidget {
         child: Center(
           child: Text(
             number.toString(),
-            style: AppStyles.textBold18.copyWith(
-              color: AppColors.white,
-            ),
+            style: AppStyles.textBold18.copyWith(color: AppColors.white),
           ),
         ),
       ),

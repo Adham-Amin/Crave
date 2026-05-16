@@ -40,6 +40,11 @@ class MealItem extends StatelessWidget {
                   : CachedNetworkImage(
                       imageUrl: meal.image,
                       fit: BoxFit.cover,
+                      errorWidget: (context, url, error) => Container(
+                        height: double.infinity,
+                        width: 140.w,
+                        color: AppColors.grey,
+                      ),
                       height: double.infinity,
                       width: 140.w,
                     ),
@@ -80,18 +85,12 @@ class MealItem extends StatelessWidget {
                     ],
                   ),
                   10.hs,
-                  Row(
-                    children: [
-                      Text(
+                  Text(
                         '\$${meal.price}',
                         style: AppStyles.textBold18.copyWith(
                           color: AppColors.white,
                         ),
                       ),
-                      const Spacer(),
-                      Icon(Icons.favorite_border, color: AppColors.white),
-                    ],
-                  ),
                 ],
               ),
             ),

@@ -13,16 +13,9 @@ class EmptyOrdersWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.receipt_long_outlined,
-            size: 100.r,
-            color: AppColors.grey,
-          ),
+          Icon(Icons.receipt_long_outlined, size: 100.r, color: AppColors.grey),
           24.hs,
-          Text(
-            'No orders yet',
-            style: AppStyles.textSemiBold20,
-          ),
+          Text('No orders yet', style: AppStyles.textSemiBold20),
           8.hs,
           Text(
             'Your order history will appear here',

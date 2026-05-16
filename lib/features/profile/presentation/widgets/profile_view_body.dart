@@ -91,7 +91,7 @@ class ProfileViewBody extends StatelessWidget {
                   ProfileMenuItem(
                     icon: Icons.favorite_rounded,
                     title: 'Favourite',
-                    onTap: () {},
+                    onTap: () => context.push(AppRoutes.wishlist),
                   ),
                 ],
               ),
@@ -124,8 +124,8 @@ class ProfileViewBody extends StatelessWidget {
   }
 
   Widget _divider() => Divider(
-        color: AppColors.grey.withValues(alpha: 0.15),
-        height: 1,
-        indent: 56.w,
-      );
+    color: AppColors.grey.withValues(alpha: 0.15),
+    height: 1,
+    indent: 56.w,
+  );
 }

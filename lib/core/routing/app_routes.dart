@@ -12,4 +12,5 @@ class AppRoutes {
   static const String orders = '/orders';
   static const String tableHistory = '/table-history';
   static const String caloriesStore = '/calories-store';
+  static const String wishlist = '/wishlist';
 }

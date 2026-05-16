@@ -35,19 +35,12 @@ class ReservationDetailsList extends StatelessWidget {
   }
 
   Widget _buildDivider() {
-    return Divider(
-      color: AppColors.darkGrey,
-      thickness: 1,
-      height: 1,
-    );
+    return Divider(color: AppColors.darkGrey, thickness: 1, height: 1);
   }
 }
 
 class _DetailRow extends StatelessWidget {
-  const _DetailRow({
-    required this.label,
-    required this.value,
-  });
+  const _DetailRow({required this.label, required this.value});
 
   final String label;
   final String value;
@@ -61,17 +54,13 @@ class _DetailRow extends StatelessWidget {
         children: [
           Text(
             label,
-            style: AppStyles.textRegular16.copyWith(
-              color: AppColors.grey,
-            ),
+            style: AppStyles.textRegular16.copyWith(color: AppColors.grey),
           ),
           Expanded(
             child: Text(
               value,
               textAlign: TextAlign.right,
-              style: AppStyles.textMedium16.copyWith(
-                color: AppColors.white,
-              ),
+              style: AppStyles.textMedium16.copyWith(color: AppColors.white),
             ),
           ),
         ],
