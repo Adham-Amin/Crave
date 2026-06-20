@@ -33,17 +33,11 @@ class _TableSelectionViewBodyState extends State<TableSelectionViewBody> {
     TableModel(number: 2, type: TableType.fourPerson, isAvailable: true),
     TableModel(number: 3, type: TableType.fourPerson, isAvailable: true),
     TableModel(number: 4, type: TableType.fourPerson, isAvailable: true),
-    TableModel(number: 5, type: TableType.fourPerson, isAvailable: true),
-    TableModel(number: 6, type: TableType.fourPerson, isAvailable: true),
+    TableModel(number: 5, type: TableType.sixPerson, isAvailable: true),
+    TableModel(number: 6, type: TableType.sixPerson, isAvailable: true),
     TableModel(number: 7, type: TableType.sixPerson, isAvailable: true),
     TableModel(number: 8, type: TableType.sixPerson, isAvailable: true),
     TableModel(number: 9, type: TableType.sixPerson, isAvailable: true),
-    TableModel(number: 10, type: TableType.sixPerson, isAvailable: true),
-    TableModel(number: 11, type: TableType.sixPerson, isAvailable: true),
-    TableModel(number: 12, type: TableType.sixPerson, isAvailable: true),
-    TableModel(number: 13, type: TableType.sixPerson, isAvailable: true),
-    TableModel(number: 14, type: TableType.sixPerson, isAvailable: true),
-    TableModel(number: 15, type: TableType.sixPerson, isAvailable: true),
   ];
 
   @override

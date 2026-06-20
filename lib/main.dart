@@ -31,7 +31,6 @@ class Crave extends StatelessWidget {
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.dark,
-          theme: AppThemes.lightTheme,
           darkTheme: AppThemes.darkTheme,
           routerConfig: RouterGenerationConfig.router,
         ),

@@ -15,8 +15,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class CartViewBody extends StatelessWidget {
+class CartViewBody extends StatefulWidget {
   const CartViewBody({super.key});
+
+  @override
+  State<CartViewBody> createState() => _CartViewBodyState();
+}
+
+class _CartViewBodyState extends State<CartViewBody> {
+  bool _isPromoCodeApplied = false;
+  late TextEditingController _promoCodeController;
+
+  @override
+  void initState() {
+    super.initState();
+    _promoCodeController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _promoCodeController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,11 +84,29 @@ class CartViewBody extends StatelessWidget {
                   hintText: 'Promo Code',
                   prefixIcon: const Icon(Icons.vpn_key),
                   keyboardType: TextInputType.number,
-                  onFieldSubmitted: (value) {
-                    if (value.isNotEmpty) {
-                      context.read<CartCubit>().applyPromo(int.parse(value));
-                    }
-                  },
+                  readOnly: _isPromoCodeApplied,
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.done),
+                    onPressed: _isPromoCodeApplied
+                        ? null
+                        : () {
+                            if (int.tryParse(_promoCodeController.text) !=
+                                    null &&
+                                int.parse(_promoCodeController.text) > 0) {
+                              context.read<CartCubit>().applyPromo(
+                                int.parse(_promoCodeController.text),
+                              );
+                              customSnackBar(
+                                context: context,
+                                message: 'Promo applied',
+                                type: AnimatedSnackBarType.success,
+                              );
+                              _isPromoCodeApplied = true;
+                              setState(() {});
+                            }
+                          },
+                  ),
+                  controller: _promoCodeController,
                 ),
                 16.hs,
                 Container(
